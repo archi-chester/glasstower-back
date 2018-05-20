@@ -40,7 +40,7 @@ func listener(port string) {
 			message := make([]byte, int(length))
 			_, err = io.ReadFull(conn, message)
 			// вывели в консоль
-			println(string(message))
+			println(string(decrypt(message)))
 			// // Echo all incoming data.
 			// io.Copy(conn, conn)
 			// // Читаем данные из порта
@@ -58,7 +58,7 @@ func listener(port string) {
 }
 
 //  посылаем сообщение
-func sender(port string, message string) {
+func sender(port string, message []byte) {
 	// создаем сендера
 	conn, err := net.Dial("tcp", "127.0.0.1:"+port)
 	if err != nil {
@@ -70,5 +70,5 @@ func sender(port string, message string) {
 
 	// write the prefix and the data to the stream (checking errors)
 	_, err = conn.Write(prefix)
-	_, err = conn.Write([]byte(message))
+	_, err = conn.Write(message)
 }

@@ -1,7 +1,8 @@
 package main
 
 const (
-	LISTENER_PORT = "22022"
+	LISTENER_PORT  = "22022"
+	LISTENER_PORT2 = "22024"
 )
 
 type PcInfoStruct struct {
